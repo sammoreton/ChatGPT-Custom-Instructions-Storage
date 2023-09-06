@@ -9,6 +9,7 @@
   // ================================
   // OBSERVER FUNCTIONS
   // ================================
+
   function initializeObserver() {
     if (!window.location.href.includes("openai.com")) {
       return;
@@ -19,13 +20,11 @@
         const popup = document.querySelector(
           'div[data-state="open"] div[role="dialog"]'
         );
-        // make sure the popup dialog contains the text "Custom instructions"
+
         if (popup && popup.innerText.includes("Custom instructions")) {
-          if (popup && !isUIInitialized) {
+          if (!popup.querySelector(".chatgpt-extension-container")) {
+            // Only initialize if the UI is not yet present
             initializeExtensionUI(popup);
-            isUIInitialized = true;
-          } else if (!popup && isUIInitialized) {
-            isUIInitialized = false;
           }
         }
       });
@@ -107,6 +106,7 @@
   // ================================
   // STORAGE OPERATIONS
   // ================================
+
   function saveCustomInstruction(title, instruction1, instruction2) {
     const currentProject = document.querySelector(
       ".chatgpt-extension-project-dropdown"
@@ -161,6 +161,7 @@
   // ================================
   // UI COMPONENTS
   // ================================
+
   function createUIContainer() {
     const container = document.createElement("div");
     container.className = "chatgpt-extension-container";
@@ -191,8 +192,16 @@
       createDropdown(),
       createButton(plusIcon, addNewInstruction, "Add new instruction"),
       createButton(saveIcon, saveCurrentCustomInstruction, "Save changes"),
-      createButton(cloneIcon, saveAsNewCustomInstruction,  "Save as new instruction"),
-      createButton(trashIcon, deleteCustomInstructionPrompt, "Delete current instruction"),
+      createButton(
+        cloneIcon,
+        saveAsNewCustomInstruction,
+        "Save as new instruction"
+      ),
+      createButton(
+        trashIcon,
+        deleteCustomInstructionPrompt,
+        "Delete current instruction"
+      ),
     ];
     elements.forEach((el) => container.appendChild(el));
     return container;
@@ -237,7 +246,7 @@
     const button = document.createElement("button");
     // if user hovers over button then show description as a popup
     if (description) {
-        button.setAttribute("title", description);
+      button.setAttribute("title", description);
     }
     // if trashicon then btn danger else btn primary
     button.className = `btn relative mr-2 ${
@@ -315,6 +324,7 @@
   // ================================
   // BUTTON ACTIONS
   // ================================
+
   function addProject() {
     const projectName = prompt("Enter the name for the new project:");
     if (projectName) {

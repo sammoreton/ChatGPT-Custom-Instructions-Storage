@@ -184,15 +184,15 @@
       createFileInput(restoreData),
       createText("Project:"),
       createProjectDropdown(),
-      createButton(plusIcon, addProject),
-      createButton(pencilIcon, editProject),
-      createButton(trashIcon, deleteProject),
+      createButton(plusIcon, addProject, "Add new project"),
+      createButton(pencilIcon, editProject, "Rename current project"),
+      createButton(trashIcon, deleteProject, "Delete current project"),
       createText("Instruction:"),
       createDropdown(),
-      createButton(plusIcon, addNewInstruction),
-      createButton(saveIcon, saveCurrentCustomInstruction),
-      createButton(cloneIcon, saveAsNewCustomInstruction),
-      createButton(trashIcon, deleteCustomInstructionPrompt),
+      createButton(plusIcon, addNewInstruction, "Add new instruction"),
+      createButton(saveIcon, saveCurrentCustomInstruction, "Save changes"),
+      createButton(cloneIcon, saveAsNewCustomInstruction,  "Save as new instruction"),
+      createButton(trashIcon, deleteCustomInstructionPrompt, "Delete current instruction"),
     ];
     elements.forEach((el) => container.appendChild(el));
     return container;
@@ -233,8 +233,12 @@
     return input;
   }
 
-  function createButton(svgIcon, onClick) {
+  function createButton(svgIcon, onClick, description = null) {
     const button = document.createElement("button");
+    // if user hovers over button then show description as a popup
+    if (description) {
+        button.setAttribute("title", description);
+    }
     // if trashicon then btn danger else btn primary
     button.className = `btn relative mr-2 ${
       svgIcon.includes("trash") ? "btn-danger" : "btn-primary"

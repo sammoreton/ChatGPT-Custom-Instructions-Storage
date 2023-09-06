@@ -25,9 +25,7 @@ git clone https://github.com/sammoreton/ChatGPT-Custom-Instructions-Storage.git
 
 ## Usage
 
-1. Click on the extension icon in the Chrome toolbar.
-2. Add your custom instructions or queries.
-3. Access them anytime by clicking on the extension icon.
+With the chrome extension running, simply open the ChatGPT website and navigate to the custom instructions popup.
 
 ## Contributing
 

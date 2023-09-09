@@ -1,4 +1,4 @@
-# ChatGPT-Custom-Instructions-Storage
+# ChatGPT Custom Instructions Storage
 
 ChatGPT-Custom-Instructions-Storage is a Chrome extension designed to enhance your experience with ChatGPT. Store and quickly access custom instructions for ChatGPT, ensuring you have a seamless interaction every time.
 
